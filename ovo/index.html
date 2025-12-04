@@ -61,6 +61,18 @@
 		}
 	})();
 	</script>
+
+    <script>
+        // warn the homies not to Thanos-snap their cookies
+        (function () {
+            // Check if we've already shown the warning
+            if (!localStorage.getItem("cookieWarningShown")) {
+                alert("Warning! Do NOT clear your browser cookies. Doing so will erase your save file, and you will lose ALL progress.");
+                localStorage.setItem("cookieWarningShown", "true");
+        }
+        })();
+</script>
+
 	
 	<!-- The canvas must be inside a div called c2canvasdiv -->
 	<div id="c2canvasdiv">
