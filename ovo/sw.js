@@ -1,6 +1,6 @@
 "use strict";
 
-const OFFLINE_DATA_FILE = "offline.jsonS";
+const OFFLINE_DATA_FILE = "offline.json";
 const CACHE_NAME_PREFIX = "c2offline";
 const BROADCASTCHANNEL_NAME = "offline";
 const CONSOLE_PREFIX = "[SW] ";
