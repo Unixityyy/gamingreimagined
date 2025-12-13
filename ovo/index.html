@@ -72,6 +72,13 @@ function toggleFullscreen(elem) {
     else if (document.msExitFullscreen) document.msExitFullscreen();
     elem.style.borderRadius = '10px';
   }
+
+  // Listen for ESC or other fullscreen exits
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      elem.style.borderRadius = '10px';
+    }
+  });
 }
 </script>
 
