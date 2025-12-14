@@ -1108,7 +1108,7 @@ export let runtime;
           // runtime.tickMe(this);
 
 
-          notify("QOL Modloader", "by Awesomeguy", "../src/img/modloader/modloader.png");
+          notify("OvO Modloader", "Successfully initialized", "../src/img/modloader/modloader.png");
           // console.log(createNotifyModal)
           // createNotifyModal("appleapple");
 

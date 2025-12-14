@@ -1718,7 +1718,7 @@
 
             runtime.tickMe(this);
 
-            notify("QOL Modloader", "by Awesomeguy", "https://cdn3.iconfinder.com/data/icons/work-life-balance-glyph-1/64/quality-of-life-happiness-heart-512.png");
+            notify("OvO Modloader", "Successfully initialized", "../src/img/modloader/modloader.png");
 
 
         },
