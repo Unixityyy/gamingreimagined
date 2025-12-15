@@ -1031,6 +1031,23 @@
                 "enabled": false
             }
         },
+        "textureswap": {
+            "name": "Texture Swap",
+            "author": "pwR",
+            "desc": "Swaps every texture in the game",
+            "url": "../src/mods/modloader/textureswap.js",
+            "icon": "../src/img/mods/textureswap.png",
+            "platform": ["pc", "mobile"],
+            "version": ["1.4", "1.4.4", "CTLE"],
+            "tags": ["fun"],
+            "reload": true,
+            "settings": null,
+            "defaultSettings": {
+                "settings": null,
+                "favorite": false,
+                "enabled": false
+            }
+        },
         "hurricane": {
             "name": "Hurricane",
             "author": "Toadi",

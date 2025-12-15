@@ -11,6 +11,12 @@
         "enabled": false,
         "url": "../src/mods/modloader/chaos.js"
     },
+      "textureswap": {
+        "name": "Texture Swap",
+        "desc": "By pwR<br/><br/>Swaps all textures in the game.",
+        "enabled": false,
+        "url": "../src/mods/modloader/textureswap.js"
+    },
     "gui": {
         "name": "Gui Mod",
         "desc": "By Awesomeguy <br/><br/>Customize your HUD! Move around elements, right click to edit them, pause the game to enable/disable and add custom text nodes!<br/><br/>PRESS THE GREEN CHECKMARKS TO SAVE SETTING",
