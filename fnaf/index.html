@@ -1,79 +1,88 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="kazwire">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Five Nights at Freddy's</title>
-  <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/themes.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaming Reimagined</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px;
+  }
+  .logo-header img {
+    width: 400px;
+    height: auto;
+    margin-bottom: 20px; /* space between logo and 404 */
+  }
+  h1 {
+    font-size: 2.4em;
+    margin: 0 0 20px;
+  }
+  p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+  }
+  a.button {
+    display: inline-block;
+    padding: 15px 25px;
+    text-decoration: none;
+    background-color: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: background 0.3s;
+  }
+  a.button:hover {
+    background-color: #ffaa00;
+  }
+  .footer-logo {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    height: auto;
+    z-index: 9998;
+    padding: 10px;
+  }
+  .feedback-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #222;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 9999;
+  }
+</style>
 </head>
 <body>
 
-<header>
-  <img src="/logo_navbar.png" alt="Logo">
-  <nav>
-    <a href="/">Home</a>
-    <a href="/games">Games</a>
-    <a href="/feedback">Feedback</a>
-  </nav>
-</header>
-
-<div class="container">
-  <div class="game-box">
-    <iframe id="gameframe" src="/frame/game/fnaf"></iframe>
-    <div class="game-title">Five Nights at Freddy's</div>
-    <div class="game-author">By ScottGames</div>
-    <a class="full-btn" onclick="toggleFullscreen(document.getElementById('gameframe'))"></a>
-  </div>
-
-  <div class="ads" id="adsArea">
-    <!-- One big ad will fill this space -->
-  </div>
+<div class="logo-header">
+  <img src="/logo_navbar.png" alt="Gaming Reimagined Logo">
 </div>
 
-<script src="/ads/ads.js"></script>
-<script>
-const adsArea = document.getElementById('adsArea');
-let adIndex = 0;
+<h1><br>Five Nights at Freddy's</h1>
+<p><br>Please select which version of FNaF you would like to play.</p>
 
-function rotateAd() {
-  if (!ads || ads.length === 0) return;
-  const ad = ads[adIndex];
-  adsArea.innerHTML = '';
-  const slot = document.createElement('div');
-  slot.className = 'ad-slot';
-  const img = document.createElement('img');
-  img.src = ad.img;
-  if (ad.href) {
-    const link = document.createElement('a');
-    link.href = ad.href;
+<a href="/fnaf1" class="button">FNaF 1</a>
+<a href="/fnaf2" class="button">FNaF 2</a>
+<a href="/fnaf3" class="button">FNaF 3</a>
+<a href="/fnaf4" class="button">FNaF 4</a>
 
-    link.appendChild(img);
-    slot.appendChild(link);
-  } else {
-    slot.appendChild(img);
-  }
-  adsArea.appendChild(slot);
-  adIndex = (adIndex + 1) % ads.length;
-}
+<img src="./logo_light.png" class="footer-logo">
+<a href="./feedback" class="feedback-btn">Give us Feedback</a>
 
-rotateAd();
-setInterval(rotateAd, 10000);
-
-function toggleFullscreen(elem) {
-  if (!document.fullscreenElement) {
-    if (elem.requestFullscreen) elem.requestFullscreen();
-    else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
-    else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
-    elem.style.borderRadius = '0';
-  } else {
-    if (document.exitFullscreen) document.exitFullscreen();
-    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-    else if (document.msExitFullscreen) document.msExitFullscreen();
-    elem.style.borderRadius = '10px';
-  }
-}
-</script>
+<script src="https://cdn.jsdelivr.net/gh/PowerGamer6789/teampwR_resources@main/console.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,7 @@
 /* ill leave dynamic themes and other themes for the person who wants to do it */
 
+/* Start Kazwire Theme */
+
 html[data-bs-theme="kazwire"] body {
 	margin: 0;
 	background: #121212;
@@ -192,3 +194,28 @@ html[data-bs-theme="kazwire"] .feedback-btn {
 	z-index: 9999;
 }
 
+/* End Kazwire Theme */
+
+/* Start Classic Theme */
+
+html[data-bs-theme="classic"] .game-box {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	background: #181818;
+	padding: 15px;
+	border-radius: 0px;
+	border: 1px solid #333;
+	position: relative;
+}
+
+html[data-bs-theme="classic"] iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+	border-radius: 0px;
+	background: #000;
+	transition: border-radius 0.2s;
+}
+
+/* End Classic Theme */
