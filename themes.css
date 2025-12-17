@@ -1,5 +1,3 @@
-/* ill leave dynamic themes and other themes for the person who wants to do it */
-
 /* Start Kazwire Theme */
 
 html[data-bs-theme="kazwire"] body {
@@ -66,13 +64,25 @@ html[data-bs-theme="kazwire"] iframe {
 	transition: border-radius 0.2s;
 }
 
-html[data-bs-theme="kazwire"] .game-title { margin-top: 10px; font-size: 1.8em; text-align: left; flex: none; }
-html[data-bs-theme="kazwire"] .game-author { margin-top: 10px; font-size: 0.8em; text-align: left; flex: none; }
+html[data-bs-theme="kazwire"] .game-title { 
+	margin-top: 10px; 
+	font-size: 1.8em; 
+	text-align: left; 
+	flex: none; 
+}
 
+html[data-bs-theme="kazwire"] .game-author { 
+	margin-top: 10px; 
+	font-size: 0.8em; 
+	text-align: left; 
+	flex: none; 
+}
+
+/* Fullscreen button */
 html[data-bs-theme="kazwire"] .full-btn {
 	position: absolute;
 	bottom: 15px;
-	right: 15px;
+	right: 15px; /* right-most */
 	width: 40px;
 	height: 40px;
 	background: #ffcc00;
@@ -85,10 +95,22 @@ html[data-bs-theme="kazwire"] .full-btn {
 	text-decoration: none;
 }
 
-html[data-bs-theme="kazwire"] .save-edit-btn {
+html[data-bs-theme="kazwire"] .full-btn:hover {
+	background: #ffaa00;
+	transform: scale(1.05); /* subtle zoom for both buttons */
+}
+
+html[data-bs-theme="kazwire"] .full-btn::after {
+	content: '\26F6';
+	font-size: 20px;
+	color: #000;
+}
+
+/* Close button - left of fullscreen */
+html[data-bs-theme="kazwire"] .close-btn {
 	position: absolute;
 	bottom: 15px;
-	right: 63px;
+	right: 65px; /* left of fullscreen by 50px */
 	width: 40px;
 	height: 40px;
 	background: #ffcc00;
@@ -98,12 +120,18 @@ html[data-bs-theme="kazwire"] .save-edit-btn {
 	align-items: center;
 	cursor: pointer;
 	transition: 0.3s;
+	color: #000;
+	font-weight: bold;
 	text-decoration: none;
+	font-size: 20px;
 }
 
-html[data-bs-theme="kazwire"] .full-btn:hover { background: #ffaa00; }
-html[data-bs-theme="kazwire"] .full-btn::after { content: '\26F6'; font-size: 20px; color: #000; }
+html[data-bs-theme="kazwire"] .close-btn:hover {
+	background: #ffaa00;
+	transform: scale(1.05);
+}
 
+/* Ads */
 html[data-bs-theme="kazwire"] .ads {
 	width: 260px;
 	background: #181818;
@@ -113,9 +141,23 @@ html[data-bs-theme="kazwire"] .ads {
 	overflow: hidden;
 }
 
-html[data-bs-theme="kazwire"] .ad-slot { width: 100%; height: 650px; display: flex; justify-content: center; align-items: center; overflow: hidden; border-radius: 10px; }
-html[data-bs-theme="kazwire"] .ad-slot img { width: 100%; height: 100%; object-fit: cover; }
+html[data-bs-theme="kazwire"] .ad-slot { 
+	width: 100%; 
+	height: 650px; 
+	display: flex; 
+	justify-content: center; 
+	align-items: center; 
+	overflow: hidden; 
+	border-radius: 10px; 
+}
 
+html[data-bs-theme="kazwire"] .ad-slot img { 
+	width: 100%; 
+	height: 100%; 
+	object-fit: cover; 
+}
+
+/* Footer, logo, topbar, quick games, etc. */
 html[data-bs-theme="kazwire"] .logo-header img {
 	width: 400px;
 	height: auto;
@@ -195,27 +237,3 @@ html[data-bs-theme="kazwire"] .feedback-btn {
 }
 
 /* End Kazwire Theme */
-
-/* Start Classic Theme */
-
-html[data-bs-theme="classic"] .game-box {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	background: #181818;
-	padding: 15px;
-	border-radius: 0px;
-	border: 1px solid #333;
-	position: relative;
-}
-
-html[data-bs-theme="classic"] iframe {
-	width: 100%;
-	height: 100%;
-	border: none;
-	border-radius: 0px;
-	background: #000;
-	transition: border-radius 0.2s;
-}
-
-/* End Classic Theme */

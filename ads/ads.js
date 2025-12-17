@@ -2,7 +2,7 @@ const ads = [
   { img: "/ads/escaperoad.png", href: "/escaperoad" },
   { img: "/ads/undertale.png", href: "/undertale" },
   { img: "/ads/ovo.png", href: "/ovo" },
-  { img: "/ads/feedback.png" },
+  { img: "/ad/feedback.png" },
   { img: "/ads/subwaysurfers.png", href: "/subwaysurfers" },
   { img: "/ads/thereisnogame.png", href: "/thereisnogame" },
   { img: "/ads/eggycar.png", href: "/eggycar" },

@@ -20,9 +20,11 @@
 
 <div class="container">
   <div class="game-box">
-    <iframe id="gameframe" src="/frame/game/badtimesimulator"></iframe>
+    <iframe id="gameframe" src="/frame/game/badtimesimulator/"></iframe>
     <div class="game-title">Bad Time Simulator</div>
-    <div class="game-author">By fari-dev</div>
+    <div class="game-author">By Joe Zeng</div>
+    <!-- Buttons: close left of fullscreen -->
+    <a class="close-btn" onclick="closeGame()">X</a>
     <a class="full-btn" onclick="toggleFullscreen(document.getElementById('gameframe'))"></a>
   </div>
 
@@ -47,7 +49,6 @@ function rotateAd() {
   if (ad.href) {
     const link = document.createElement('a');
     link.href = ad.href;
-
     link.appendChild(img);
     slot.appendChild(link);
   } else {
@@ -72,6 +73,17 @@ function toggleFullscreen(elem) {
     else if (document.msExitFullscreen) document.msExitFullscreen();
     elem.style.borderRadius = '10px';
   }
+
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      elem.style.borderRadius = '10px';
+    }
+  });
+}
+
+function closeGame() {
+  const iframe = document.getElementById('gameframe');
+  iframe.src = '/frame/game/closed';
 }
 </script>
 

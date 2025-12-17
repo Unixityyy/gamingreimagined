@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OvO</title>
+  <title>Bad Time Simulator</title>
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="/themes.css">
 </head>
@@ -20,9 +20,11 @@
 
 <div class="container">
   <div class="game-box">
-    <iframe id="gameframe" src="/frame/game/ovo"></iframe>
+    <iframe id="gameframe" src="/frame/game/ovo/"></iframe>
     <div class="game-title">OvO</div>
     <div class="game-author">By Dedra Games</div>
+    <!-- Buttons: close left of fullscreen -->
+    <a class="close-btn" onclick="closeGame()">X</a>
     <a class="full-btn" onclick="toggleFullscreen(document.getElementById('gameframe'))"></a>
   </div>
 
@@ -47,7 +49,6 @@ function rotateAd() {
   if (ad.href) {
     const link = document.createElement('a');
     link.href = ad.href;
-
     link.appendChild(img);
     slot.appendChild(link);
   } else {
@@ -73,12 +74,16 @@ function toggleFullscreen(elem) {
     elem.style.borderRadius = '10px';
   }
 
-  // Listen for ESC or other fullscreen exits
   document.addEventListener('fullscreenchange', () => {
     if (!document.fullscreenElement) {
       elem.style.borderRadius = '10px';
     }
   });
+}
+
+function closeGame() {
+  const iframe = document.getElementById('gameframe');
+  iframe.src = '/frame/game/closed';
 }
 </script>
 

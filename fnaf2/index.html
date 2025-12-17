@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FNaF 2</title>
+  <title>Bad Time Simulator</title>
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="/themes.css">
 </head>
@@ -20,9 +20,11 @@
 
 <div class="container">
   <div class="game-box">
-    <iframe id="gameframe" src="/frame/game/fnaf/2"></iframe>
+    <iframe id="gameframe" src="/frame/game/fnaf/2/"></iframe>
     <div class="game-title">FNaF 2</div>
     <div class="game-author">By Scott Cawthon</div>
+    <!-- Buttons: close left of fullscreen -->
+    <a class="close-btn" onclick="closeGame()">X</a>
     <a class="full-btn" onclick="toggleFullscreen(document.getElementById('gameframe'))"></a>
   </div>
 
@@ -47,7 +49,6 @@ function rotateAd() {
   if (ad.href) {
     const link = document.createElement('a');
     link.href = ad.href;
-
     link.appendChild(img);
     slot.appendChild(link);
   } else {
@@ -72,6 +73,17 @@ function toggleFullscreen(elem) {
     else if (document.msExitFullscreen) document.msExitFullscreen();
     elem.style.borderRadius = '10px';
   }
+
+  document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+      elem.style.borderRadius = '10px';
+    }
+  });
+}
+
+function closeGame() {
+  const iframe = document.getElementById('gameframe');
+  iframe.src = '/frame/game/closed';
 }
 </script>
 
