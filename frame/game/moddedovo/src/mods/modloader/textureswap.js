@@ -29,10 +29,12 @@
 
     runtime.redraw = true;
     console.log("textures reshuffled chaos!");
+    notify("Texture Swap", "Textures shuffled!", "../src/img/mods/textureswap.png");
   }
 
   // initial shuffle
   shuffleTextures();
+  notify("Texture Swap", "Textures shuffled!", "../src/img/mods/textureswap.png");
 
   // repeat every 5 seconds
   setInterval(shuffleTextures, 5000);
