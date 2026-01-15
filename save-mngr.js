@@ -2,44 +2,44 @@ const MAGIC_BYTE = "pwR";
 
 async function importGlobalSave(file) {
   if (!file) return;
-  const reader = new FileReader();
-  
-  reader.onload = async (e) => {
-    try {
-      const fileContent = e.target.result;
 
-      const hasHeader = fileContent.startsWith(MAGIC_BYTE);
-      const hasFooter = fileContent.endsWith(MAGIC_BYTE);
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const bytes = new Uint8Array(arrayBuffer);
+    const magicLen = MAGIC_BYTE.length;
 
-      if (!hasHeader || !hasFooter) {
-        throw new Error("Unauthorized file format. Magic bytes missing.");
-      }
+    const decoder = new TextDecoder();
+    const header = decoder.decode(bytes.slice(0, magicLen));
+    const footer = decoder.decode(bytes.slice(-magicLen));
 
-      const base64Data = fileContent.substring(MAGIC_BYTE.length, fileContent.length - MAGIC_BYTE.length);
-      const rawData = decodeURIComponent(escape(atob(base64Data)));
-      const data = JSON.parse(rawData);
-
-      if (data.site !== "Gaming Reimagined") {
-        throw new Error("Incompatible save source.");
-      }
-
-      if (!confirm("Restore progress? This will only overwrite data present in the backup.")) return;
-
-      Object.keys(data.local).forEach(k => {
-        localStorage.setItem(k, data.local[k]);
-      });
-
-      for (let dbName in data.idb) {
-        await injectIDB(dbName, data.idb[dbName]);
-      }
-
-      alert("Restoration successful! Reloading...");
-      window.location.reload();
-    } catch (err) {
-      alert("Failed to load: " + err.message);
+    if (header !== MAGIC_BYTE || footer !== MAGIC_BYTE) {
+      throw new Error("Unauthorized file format.");
     }
-  };
-  reader.readAsText(file);
+
+    const compressedData = bytes.slice(magicLen, -magicLen);
+
+    const decompressionStream = new Blob([compressedData]).stream().pipeThrough(new DecompressionStream("gzip"));
+    const decompressedResponse = new Response(decompressionStream);
+    const jsonString = await decompressedResponse.text();
+    const data = JSON.parse(jsonString);
+
+    if (data.site !== "Gaming Reimagined") {
+      throw new Error("Incompatible save source.");
+    }
+
+    if (!confirm("Restore progress?")) return;
+
+    Object.keys(data.local).forEach(k => localStorage.setItem(k, data.local[k]));
+
+    for (let dbName in data.idb) {
+      await injectIDB(dbName, data.idb[dbName]);
+    }
+
+    alert("Restoration successful!");
+    window.location.reload();
+  } catch (err) {
+    alert("Failed to load: " + err.message);
+  }
 }
 
 async function injectIDB(name, content) {
@@ -78,6 +78,7 @@ async function injectIDB(name, content) {
     req.onerror = () => resolve();
   });
 }
+
 async function exportGlobalSave() {
   const backup = {
     site: "Gaming Reimagined",
@@ -96,23 +97,24 @@ async function exportGlobalSave() {
     }
 
     const jsonString = JSON.stringify(backup);
-    const encodedData = btoa(unescape(encodeURIComponent(jsonString)));
+    const stream = new Blob([jsonString]).stream();
+
+    const compressedStream = stream.pipeThrough(new CompressionStream("gzip"));
+    const compressedResponse = new Response(compressedStream);
+    const compressedBuffer = await compressedResponse.arrayBuffer();
+
+    const magicHeader = new TextEncoder().encode(MAGIC_BYTE);
+    const finalBlob = new Blob([magicHeader, compressedBuffer, magicHeader], { type: 'application/octet-stream' });
     
-    const finalPackage = MAGIC_BYTE + encodedData + MAGIC_BYTE;
-    
-    const blob = new Blob([finalPackage], { type: 'application/octet-stream' });
-    const url = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(finalBlob);
     const link = document.createElement('a');
-    
     link.href = url;
-    link.download = `GamingReimaginedSave_${new Date().toLocaleDateString().replace(/\//g, '-')}.grs`;
+    link.download = `GamingReimaginedSave_${new Date().toISOString().split('T')[0]}.grs`;
     
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-
-    console.log("Global backup exported successfully.");
   } catch (err) {
     alert("Error creating backup: " + err.message);
   }
