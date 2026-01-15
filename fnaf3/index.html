@@ -6,46 +6,12 @@
   <title>FNaF 3</title>
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="/themes.css">
-  <script src="/creds.js"></script>
+ 
 </head>
 <body>
 <div id="loginStatus"></div>
 
-<script>
-  const el = document.getElementById("loginStatus");
-
-  el.style.position = "absolute";
-  el.style.top = "16px";
-  el.style.right = "16px";
-  el.style.color = "#fff";
-  el.style.textDecoration = "underline";
-  el.style.fontFamily = "system-ui,sans-serif";
-  el.style.fontSize = "15px";
-  el.style.fontWeight = "500";
-  el.style.cursor = "pointer";
-  el.style.zIndex = "10";
-
-  const waitForUID = setInterval(() => {
-    if (typeof UID !== "undefined") {
-      clearInterval(waitForUID);
-
-      if (UID) {
-        const user = firebase.auth().currentUser;
-        if (user) {
-          el.textContent = user.email.split("@")[0];
-          el.style.cursor = "default";
-        }
-      } else {
-        el.textContent = "Log in";
-        el.onclick = () => {
-          const redirectURL = window.location.origin;
-          window.location.href =
-            `https://teampwr.thedaedals.com/login?afterLogin=${redirectURL}`;
-        };
-      }
-    }
-  }, 100);
-</script>
+ 
 <header>
   <img src="/logo_navbar.png" alt="Logo">
   <nav>
@@ -123,6 +89,9 @@ function closeGame() {
   iframe.src = '/frame/game/closed';
 }
 </script>
-
+</script>
+<script type="module" defer>
+  import { auth } from "/creds.js";
+</script>
 </body>
 </html>

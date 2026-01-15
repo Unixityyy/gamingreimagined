@@ -1,19 +1,8 @@
 // creds.js
-// 🔥 Firebase SDKs
-const firebaseAppScript = document.createElement('script');
-firebaseAppScript.src = "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-firebaseAppScript.onload = () => {
-    const firebaseAuthScript = document.createElement('script');
-    firebaseAuthScript.src = "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    firebaseAuthScript.onload = initFirebase;
-    document.head.appendChild(firebaseAuthScript);
-};
-document.head.appendChild(firebaseAppScript);
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-// Global UID variable
-var UID = null;
-
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyD2B6GywfjWNvYoPvBsM97Z_Q0YK1Y736Y",
   authDomain: "pwr-gamingreimagined.firebaseapp.com",
   projectId: "pwr-gamingreimagined",
@@ -23,19 +12,17 @@ const firebaseConfig = {
   measurementId: "G-SKQX2P9LVR"
 };
 
-// Initialize Firebase after SDKs load
-function initFirebase() {
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 
-    // Track logged-in user
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            UID = user.uid;
-            console.log("Logged-in UID:", UID);
-        } else {
-            UID = null;
-            console.log("No user logged in");
-        }
-    });
-}
+export let UID = null;
+
+onAuthStateChanged(auth, user => {
+  if (user) {
+    UID = user.uid;
+    console.log("Logged in:", UID);
+  } else {
+    UID = null;
+    console.log("Not logged in");
+  }
+});
