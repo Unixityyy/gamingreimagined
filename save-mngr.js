@@ -1,4 +1,4 @@
-const MAGIC_BYTE = "=madebyunixity=";
+const MAGIC_BYTE = "pwR";
 
 async function importGlobalSave(file) {
   if (!file) return;
